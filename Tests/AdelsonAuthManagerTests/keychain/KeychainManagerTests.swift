@@ -38,7 +38,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testConfigureKeychainManagerSuccessfully() async{
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         
         // Act
         KeychainManager.configure(with: config)
@@ -52,7 +52,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testAccessSharedInstanceAfterConfiguration() {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         
         // Act
@@ -65,8 +65,8 @@ class KeychainManagerTests: XCTestCase {
     
     func testPreventMultipleConfigurations() async{
         // Arrange
-        let config1 = AdelsonAuthConfig(appName: "TestApp1")
-        let config2 = AdelsonAuthConfig(appName: "TestApp2")
+        let config1 = AdelsonAuthConfig(appName: "TestApp1", baseUrl: "any", signUpEndpoint: "any")
+        let config2 = AdelsonAuthConfig(appName: "TestApp2", baseUrl: "any", signUpEndpoint: "any")
         
         // Act
         KeychainManager.configure(with: config1)
@@ -90,7 +90,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testSaveDataToKeychainSuccessfully() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "test_data".data(using: .utf8)!
@@ -105,7 +105,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testSaveDataOverwritesExistingItem() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let originalData = "original_data".data(using: .utf8)!
@@ -125,7 +125,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testSaveEmptyData() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let emptyData = Data()
@@ -140,7 +140,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testSaveWithEmptyAccountString() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "test_data".data(using: .utf8)!
@@ -155,7 +155,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testSaveWithSpecialCharactersInAccount() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "test_data".data(using: .utf8)!
@@ -172,7 +172,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testUpdateExistingKeychainItem() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let originalData = "original_data".data(using: .utf8)!
@@ -192,7 +192,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testUpdateNonExistentKeychainItem() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "test_data".data(using: .utf8)!
@@ -209,7 +209,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testReadExistingKeychainItem() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "test_data".data(using: .utf8)!
@@ -226,7 +226,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testReadNonExistentKeychainItem() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let nonExistentAccount = "non_existent_account"
@@ -242,7 +242,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testDeleteExistingKeychainItem() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "test_data".data(using: .utf8)!
@@ -261,7 +261,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testDeleteNonExistentKeychainItem() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let nonExistentAccount = "non_existent_account"
@@ -277,8 +277,8 @@ class KeychainManagerTests: XCTestCase {
     
     func testServiceNameGeneration() async{
         // Arrange
-        let config1 = AdelsonAuthConfig(appName: "TestApp1")
-        let config2 = AdelsonAuthConfig(appName: "TestApp2")
+        let config1 = AdelsonAuthConfig(appName: "TestApp1", baseUrl: "any", signUpEndpoint: "any")
+        let config2 = AdelsonAuthConfig(appName: "TestApp2", baseUrl: "any", signUpEndpoint: "any")
         
         // Act
         KeychainManager.configure(with: config1)
@@ -302,7 +302,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testConcurrentAccessToSingleton() {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let expectation = XCTestExpectation(description: "Concurrent access")
         expectation.expectedFulfillmentCount = 10
@@ -340,7 +340,7 @@ class KeychainManagerTests: XCTestCase {
     
     func testCompleteKeychainWorkflow() async {
         // Arrange
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "integration_test_data".data(using: .utf8)!
@@ -379,7 +379,7 @@ class KeychainManagerTests: XCTestCase {
 extension KeychainManagerTests {
     
     func testSavePerformance() {
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "performance_test_data".data(using: .utf8)!
@@ -394,7 +394,7 @@ extension KeychainManagerTests {
     }
     
     func testReadPerformance() {
-        let config = AdelsonAuthConfig(appName: "TestApp")
+        let config = AdelsonAuthConfig(appName: "TestApp", baseUrl: "any", signUpEndpoint: "any")
         KeychainManager.configure(with: config)
         let manager = KeychainManager.shared
         let testData = "performance_test_data".data(using: .utf8)!

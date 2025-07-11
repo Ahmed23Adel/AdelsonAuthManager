@@ -1,0 +1,24 @@
+{
+  "originHash" : "d29807d78c11026a3d805c705760160fc75c4a512f46d0727529a051877d49e0",
+  "pins" : [
+    {
+      "identity" : "adelsonvalidator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Ahmed23Adel/AdelsonValidator",
+      "state" : {
+        "branch" : "main",
+        "revision" : "932b7ae8c885c87d7117a2fc19052b823abd5092"
+      }
+    },
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
+        "version" : "5.10.2"
+      }
+    }
+  ],
+  "version" : 3
+}
