@@ -17,11 +17,5 @@ final class AdelsonAuthConfig: Sendable{
         self.baseUrl = baseUrl
         self.traditionalSignUpConfig = TraditionalSignUpConfig(baseUrl: baseUrl, signUpEndpoint: signUpEndpoint)
     }
-    
-    
-    
-    
-    
-    
-    
+       
 }

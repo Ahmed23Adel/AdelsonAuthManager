@@ -13,6 +13,7 @@ import AdelsonValidator
 
 @available(macOS 10.15, *)
 struct TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
+    var error: (any Error)?
     private let config: AdelsonAuthConfig
     private let username: String
     private let password: String
@@ -31,19 +32,18 @@ struct TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
     
     
     
-    func execute() async throws -> Bool {
+    mutating func execute() async -> Bool {
         do {
-            print("jjjj1", config.traditionalSignUpConfig.signUpUrl)
             let _ = try await networkService.request(
                 url: config.traditionalSignUpConfig.signUpUrl,
                 method: .post,
                 parameters: getUserCodableObject(),
                 responseType: T.self)
-            print("jjjj1", config.traditionalSignUpConfig.signUpUrl)
             return true
         } catch {
-            try handleNetworkError(error as! SignUpError)
-            return true
+            self.error = handleNetworkError(error as! SignUpError)
+            print("self.error", self.error)
+            return false
         }
     }
     
@@ -51,18 +51,19 @@ struct TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
         SignUpBody(username: username, password: password)
     }
     
-    private func handleNetworkError(_ error: SignUpError) throws {
+    private func handleNetworkError(_ error: SignUpError) -> (any Error)? {
         switch error {
         case .networkError(_, let statusCode):
             if statusCode != nil && statusCode == 400 {
-                throw TraditionslSignUpOperationErrors.UserNameAlreadyExists
+                return TraditionslSignUpOperationErrors.UserNameAlreadyExists
             }
         case .invalidURL,
                 .noResponse,
                 .decodingError:
-            throw error
+            return error
             
         }
+       return nil
     }
     func getUserName() -> String {
         username

@@ -7,9 +7,15 @@
 
 import Foundation
 protocol AdelsonAuthOperation{
-    
-    func execute() async throws -> Bool
+    var error: (any Error)? { get }
+    mutating func execute() async -> Bool
     func getUserName()-> String
     func getPassword()-> String
-    
+    func getError() -> Error?
+}
+
+extension AdelsonAuthOperation{
+    func getError() -> (any Error)? {
+        return error
+    }
 }

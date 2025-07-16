@@ -44,7 +44,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "testuser_\(UUID().uuidString.prefix(8))" // Unique username
         let password = "testpass123"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -52,7 +52,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         )
         
         // Act
-        let result = try await operation.execute()
+        var result = try await operation.execute()
         print("result", result)
         // Assert
         XCTAssertTrue(result, "Execute should return true for successful signup")
@@ -67,14 +67,14 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "testuser_\(UUID().uuidString.prefix(8))" // Unique username
         let password = "testpass123"
         
-        let operation1 = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation1 = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
             networkService: networkService
         )
         
-        let operation2 = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation2 = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -114,7 +114,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "testuser"
         let password = "testpass123"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: unavailableConfig,
@@ -143,7 +143,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = ""
         let password = "testpass123"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -165,7 +165,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "testuser_empty_pass"
         let password = ""
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -187,7 +187,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = String(repeating: "a", count: 1000)
         let password = "testpass123"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -209,7 +209,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "test@user.com"
         let password = "p@ssw0rd!@#$%"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -232,7 +232,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "用户名\(UUID().uuidString.prefix(4))"
         let password = "пароль123"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -255,21 +255,21 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let baseUsername = "concurrent_user"
         let password = "testpass123"
         
-        let operation1 = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation1 = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: "\(baseUsername)_1_\(UUID().uuidString.prefix(4))",
             password: password,
             config: config,
             networkService: networkService
         )
         
-        let operation2 = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation2 = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: "\(baseUsername)_2_\(UUID().uuidString.prefix(4))",
             password: password,
             config: config,
             networkService: networkService
         )
         
-        let operation3 = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation3 = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: "\(baseUsername)_3_\(UUID().uuidString.prefix(4))",
             password: password,
             config: config,
@@ -339,7 +339,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "json_test_\(UUID().uuidString.prefix(8))"
         let password = "testpass123"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,
@@ -365,7 +365,7 @@ class TraditionslSignUpOperationTests: XCTestCase {
         let username = "perf_test_\(UUID().uuidString.prefix(8))"
         let password = "testpass123"
         
-        let operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
+        var operation = TraditionslSignUpOperation<DefaultSignUpResponse>(
             username: username,
             password: password,
             config: config,

@@ -19,7 +19,6 @@ final class AlamoFireNetworkService: AdelsonNetworkService{
         ) async throws -> T {
             
             try await withCheckedThrowingContinuation { continuation in
-                print("url", url)
                 AF.request(
                     url,
                     method: method,
@@ -29,7 +28,6 @@ final class AlamoFireNetworkService: AdelsonNetworkService{
                 .responseDecodable(of: T.self) { response in
                     switch response.result {
                     case .success(let value):
-                        print("value", value)
                         continuation.resume(returning: value)
                     case .failure(let error):
                         if let statusCode = response.response?.statusCode {
