@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum TraditionslSignUpOperationErrors: Error{
+public enum TraditionslSignUpOperationErrors: Error{
     case UserNameAlreadyExists
 }

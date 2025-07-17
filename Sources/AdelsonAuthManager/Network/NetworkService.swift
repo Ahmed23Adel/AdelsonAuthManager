@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-protocol AdelsonNetworkService: Sendable{
+public protocol AdelsonNetworkService: Sendable{
     func request<T: Decodable & Sendable, P: Encodable & Sendable>(
         url: String,
         method: HTTPMethod,

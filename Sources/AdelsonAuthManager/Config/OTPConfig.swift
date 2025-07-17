@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OTPConfig{
+public struct OTPConfig: Sendable{
     private let baseURL: String
     private let endpoint: String
     

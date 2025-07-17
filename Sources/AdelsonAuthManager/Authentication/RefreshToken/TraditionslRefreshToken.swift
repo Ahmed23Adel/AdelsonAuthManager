@@ -9,25 +9,25 @@ import Foundation
 
 
 @available(macOS 10.15, *)
-class TraditionslRefreshToken: AdelsonAuthOperation{
-    var error: (any Error)?
+public class TraditionslRefreshToken: AdelsonAuthOperation{
+    public var error: (any Error)?
     private let networkService: AdelsonNetworkService
-    private(set) var extraUserInfo: [String : String] = [:]
+    public var extraUserInfo: [String : String] = [:]
     private(set) var result: ResponseBodyModel?
     private var config: AdelsonAuthConfig
     
     
-    init(username: String, password: String,
+    public init(username: String, password: String,
          config: AdelsonAuthConfig,
          extraUserInfo: [String : String] = [:],
-         networkService: AdelsonNetworkService = AlamoFireNetworkService(),
+         networkService: AdelsonNetworkService,
     ){
         self.networkService = networkService
         self.config = config
         
     }
         
-    func execute() async -> Bool {
+    public func execute() async -> Bool {
         do {
             let requestResult = try await networkService.request(
                 url: self.config.refreshTokenConfig.url,
@@ -61,19 +61,19 @@ class TraditionslRefreshToken: AdelsonAuthOperation{
         }
        return nil
     }
-    func getUserName() -> String {
+    public func getUserName() -> String {
         ""
     }
     
-    func getPassword() -> String {
+    public func getPassword() -> String {
         ""
     }
     
-    func getExtraUserInfo(key: String) -> String {
+    public func getExtraUserInfo(key: String) -> String {
         extraUserInfo[key, default: ""]
     }
     
-    func getResult() -> ResponseBodyModel? {
+    public func getResult() -> ResponseBodyModel? {
          result
     }
 }

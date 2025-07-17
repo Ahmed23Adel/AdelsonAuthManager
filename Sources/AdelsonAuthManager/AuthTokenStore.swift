@@ -7,7 +7,7 @@
 
 import Foundation
 
-actor AuthTokenStore {
+public actor AuthTokenStore {
     static let shared = AuthTokenStore()
 
     private var accessTokenValue: String?

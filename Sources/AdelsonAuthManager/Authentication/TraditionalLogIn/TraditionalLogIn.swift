@@ -8,21 +8,21 @@
 import Foundation
 
 @available(macOS 10.15, *)
-class TraditionalLogIn: AdelsonAuthOperation{
-    var error: (any Error)?
+public class TraditionalLogIn: AdelsonAuthOperation{
+    public var error: (any Error)?
     private let config: AdelsonAuthConfig
     private let username: String
     private let password: String
     private let networkService: AdelsonNetworkService
-    private(set) var extraUserInfo: [String : String] = [:]
+    public var extraUserInfo: [String : String] = [:]
     
-    private(set) var genericAuthRequester: GenericAuthRequester<ResponseBodyModel>
+    public var genericAuthRequester: GenericAuthRequester<ResponseBodyModel>
     
     
-    init(username: String, password: String,
+    public init(username: String, password: String,
          config: AdelsonAuthConfig,
          extraUserInfo: [String : String] = [:],
-         networkService: AdelsonNetworkService = AlamoFireNetworkService()){
+         networkService: AdelsonNetworkService){
         self.config = config
         self.username = username
         self.password = password
@@ -32,27 +32,28 @@ class TraditionalLogIn: AdelsonAuthOperation{
             username: username,
             password: password,
             config: config,
+            networkService: AlamoFireNetworkService(),
             url: config.traditionalLoginConfig.url)
         
     }
         
-    func execute() async -> Bool {
+    public func execute() async -> Bool {
         return await genericAuthRequester.execute()
     }
 
-    func getUserName() -> String {
+    public func getUserName() -> String {
         username
     }
     
-    func getPassword() -> String {
+    public func getPassword() -> String {
         password
     }
     
-    func getExtraUserInfo(key: String) -> String {
+    public func getExtraUserInfo(key: String) -> String {
         extraUserInfo[key, default: ""]
     }
     
-    func getResult() -> ResponseBodyModel? {
+    public func getResult() -> ResponseBodyModel? {
         genericAuthRequester.getResult()
     }
 }

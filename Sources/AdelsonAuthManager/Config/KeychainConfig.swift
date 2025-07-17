@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KeychainConfig{
+public struct KeychainConfig: Sendable{
     let usernameAccount = "AdelsonAccountUsername"
     let passwordAccount = "AdelsonAccountPassword"
     let accessTokenAccount = "AdlesonAccountAccessToken"

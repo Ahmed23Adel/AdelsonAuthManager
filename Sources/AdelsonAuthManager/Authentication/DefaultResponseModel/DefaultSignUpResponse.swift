@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct DefaultSignUpResponse: Decodable, Encodable{
+public struct DefaultSignUpResponse: Decodable, Encodable{
     let message: String
 }

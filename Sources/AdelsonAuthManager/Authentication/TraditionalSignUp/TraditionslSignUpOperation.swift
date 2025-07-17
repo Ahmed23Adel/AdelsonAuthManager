@@ -12,14 +12,14 @@ import AdelsonValidator
 
 
 @available(macOS 10.15, *)
-class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
+public class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
         
-    var error: (any Error)?
+    public var error: (any Error)?
     private let config: AdelsonAuthConfig
     private let username: String
     private let password: String
     private let networkService: AdelsonNetworkService
-    private(set) var extraUserInfo: [String : String] = [:]
+    public var extraUserInfo: [String : String] = [:]
     
     private(set) var genericAuthRequester: GenericAuthRequester<T>
     
@@ -37,27 +37,28 @@ class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
             username: username,
             password: password,
             config: config,
+            networkService: AlamoFireNetworkService(),
             url: config.traditionalSignUpConfig.url)
         
     }
         
-    func execute() async -> Bool {
+    public func execute() async -> Bool {
         return await genericAuthRequester.execute()
     }
 
-    func getUserName() -> String {
+    public func getUserName() -> String {
         username
     }
     
-    func getPassword() -> String {
+    public func getPassword() -> String {
         password
     }
     
-    func getExtraUserInfo(key: String) -> String {
+    public func getExtraUserInfo(key: String) -> String {
         extraUserInfo[key, default: ""]
     }
     
-    func getResult() -> T? {
+    public func getResult() -> T? {
         genericAuthRequester.getResult()
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MainAuthConfig{
+public struct MainAuthConfig: Sendable{
     private(set) var accessToken: String?
     private(set) var refresh_token: String?
     

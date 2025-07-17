@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TraditionalSignUpConfig{
+public struct TraditionalSignUpConfig: Sendable{
     let signUpEndpoint: String
     let baseUrl: String
 

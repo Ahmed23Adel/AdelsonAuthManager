@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-enum SignUpError: Error {
+public enum SignUpError: Error {
     case networkError(AFError, statusCode: Int?)
     case invalidURL
     case noResponse

@@ -7,17 +7,17 @@
 
 import Foundation
 
-final class AdelsonAuthConfig: Sendable{
+public final class AdelsonAuthConfig: Sendable{
     let appName: String
     let baseUrl: String
-    let traditionalSignUpConfig: TraditionalSignUpConfig
-    let keychainConfig: KeychainConfig
-    let otpConfig: OTPConfig
-    let traditionalLoginConfig: TraditionalLoginConfig
-    let mainAuthConfig: MainAuthConfig = MainAuthConfig()
-    let refreshTokenConfig: RefreshTokenConfig
+    public let traditionalSignUpConfig: TraditionalSignUpConfig
+    public let keychainConfig: KeychainConfig
+    public let otpConfig: OTPConfig
+    public let traditionalLoginConfig: TraditionalLoginConfig
+    public let mainAuthConfig: MainAuthConfig = MainAuthConfig()
+    public let refreshTokenConfig: RefreshTokenConfig
     
-    init(appName: String,
+    public init(appName: String,
          baseUrl: String,
          signUpEndpoint: String,
          otpEndpoint: String,

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol AdelsonAuthOperation<T>{
+public protocol AdelsonAuthOperation<T>{
     associatedtype T = Codable & Sendable
     
     var error: (any Error)? { get }
@@ -20,7 +20,7 @@ protocol AdelsonAuthOperation<T>{
 }
 
 extension AdelsonAuthOperation{
-    func getError() -> (any Error)? {
+    public func getError() -> (any Error)? {
         return error
     }
 }

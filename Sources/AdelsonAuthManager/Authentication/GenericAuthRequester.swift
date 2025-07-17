@@ -9,20 +9,20 @@ import Foundation
 
 
 @available(macOS 10.15, *)
-class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
-    var error: (any Error)?
+public class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
+    public var error: (any Error)?
     private let username: String
     private let password: String
     private let networkService: AdelsonNetworkService
-    private(set) var extraUserInfo: [String : String] = [:]
+    public var extraUserInfo: [String : String] = [:]
     private let url: String
     private(set) var result: T?
     
     
-    init(username: String, password: String,
+    public init(username: String, password: String,
          config: AdelsonAuthConfig,
          extraUserInfo: [String : String] = [:],
-         networkService: AdelsonNetworkService = AlamoFireNetworkService(),
+         networkService: AdelsonNetworkService,
          url: String
     ){
         self.username = username
@@ -33,7 +33,7 @@ class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
         
     }
         
-    func execute() async -> Bool {
+    public func execute() async -> Bool {
         do {
             let requesResult = try await networkService.request(
                 url: self.url,
@@ -71,19 +71,19 @@ class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
         }
        return nil
     }
-    func getUserName() -> String {
+    public func getUserName() -> String {
         username
     }
     
-    func getPassword() -> String {
+    public func getPassword() -> String {
         password
     }
     
-    func getExtraUserInfo(key: String) -> String {
+    public func getExtraUserInfo(key: String) -> String {
         extraUserInfo[key, default: ""]
     }
     
-    func getResult() -> T? {
+    public func getResult() -> T? {
          result
     }
 }

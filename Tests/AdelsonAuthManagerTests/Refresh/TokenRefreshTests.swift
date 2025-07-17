@@ -213,31 +213,6 @@ class TokenRefreshTests: XCTestCase {
         print("✅ Test 4 Passed: Both decorators working in chain")
     }
     
-//    // MARK: - Test Case 5: Network Failure Handling
-//    func testRefreshTokenNetworkFailure() async throws {
-//        // Arrange: Set up an invalid/expired refresh token
-//        let expiredRefreshToken = "expired_or_invalid_token"
-//        await AuthTokenStore.shared.setRefreshToken(expiredRefreshToken)
-//        
-//        let refreshOperation = TraditionslRefreshToken(
-//            username: "",
-//            password: "",
-//            config: config,
-//            networkService: networkService,
-//        )
-//        
-//        // Act: Execute with invalid token
-//        let result = await refreshOperation.execute()
-//        
-//        // Assert: Verify failure handling
-//        XCTAssertFalse(result, "Operation should fail with invalid refresh token")
-//        XCTAssertNotNil(refreshOperation.error, "Error should be set on failure")
-//        XCTAssertNil(refreshOperation.getResult(), "Result should be nil on failure")
-//        
-//        print("✅ Test 5 Passed: Network failure handled correctly")
-//    }
-    
-    
     // MARK: - Test Case 7: Decorator Chain Failure Propagation
     func testDecoratorChainFailure() async throws {
         // Arrange: Set up scenario that will cause base operation to fail

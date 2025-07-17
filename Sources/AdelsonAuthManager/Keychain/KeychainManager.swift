@@ -6,14 +6,14 @@
 //
 import Foundation
 
-actor KeychainManager {
+public actor KeychainManager {
     // MARK: shared object configuration
     nonisolated(unsafe) static var _shared: KeychainManager?
     static let lock = NSLock()
     
     let config: AdelsonAuthConfig
     
-    static var shared: KeychainManager {
+    public static var shared: KeychainManager {
         lock.lock()
         defer { lock.unlock() }
         
@@ -27,7 +27,7 @@ actor KeychainManager {
         self.config = config
     }
     
-    static func configure(with config: sending AdelsonAuthConfig) {
+    public static func configure(with config: sending AdelsonAuthConfig) {
         lock.lock()
         defer { lock.unlock() }
         
@@ -39,12 +39,12 @@ actor KeychainManager {
     }
     
     // MARK: CRUD properties
-    private var service: String {
+    public  var service: String {
         "com.\(config.appName).AdelsonAuthManager"
     }
     
     // MARK: CRUD operations
-    func save(_ data: Data, account: String) -> Bool {
+    public func save(_ data: Data, account: String) -> Bool {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: self.service,
@@ -57,7 +57,7 @@ actor KeychainManager {
         return status == errSecSuccess
     }
     
-    func update(_ data: Data, account: String) -> Bool {
+    public func update(_ data: Data, account: String) -> Bool {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: self.service,
@@ -72,7 +72,7 @@ actor KeychainManager {
         return status == errSecSuccess
     }
     
-    func read(account: String) -> Data? {
+    public func read(account: String) -> Data? {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: self.service,
@@ -86,7 +86,7 @@ actor KeychainManager {
         return status == errSecSuccess ? result as? Data : nil
     }
     
-    func delete(account: String) -> Bool {
+    public func delete(account: String) -> Bool {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: self.service,

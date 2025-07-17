@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol OTPVerificationType {
+public protocol OTPVerificationType {
     var error: (any Error)? { get }
     var otp: String { get }
     

@@ -9,16 +9,16 @@ import Foundation
 
 
 @available(macOS 10.15, *)
-class OTPVerification<T: Codable & Sendable>: OTPVerificationType{
-    var error: (any Error)?
-    var otp: String
+public class OTPVerification<T: Codable & Sendable>: OTPVerificationType{
+    public var error: (any Error)?
+    public var otp: String
     private let config: AdelsonAuthConfig
     private let networkService: AdelsonNetworkService
     private let credentials: BasicCredentials
 
-    init(otp: String,
+    public init(otp: String,
          config: AdelsonAuthConfig,
-         networkService: AdelsonNetworkService = AlamoFireNetworkService(),
+         networkService: AdelsonNetworkService,
          credentials: BasicCredentials
     ) {
         self.otp = otp
@@ -27,12 +27,12 @@ class OTPVerification<T: Codable & Sendable>: OTPVerificationType{
         self.credentials = credentials
     }
     
-    func setOTP(otp: String){
+    public func setOTP(otp: String){
         self.otp = otp
         self.error = nil
     }
     
-    func execute() async -> Bool {
+    public func execute() async -> Bool {
         do {
             let _ = try await networkService.request(
                 url: config.otpConfig.url,
@@ -70,11 +70,11 @@ class OTPVerification<T: Codable & Sendable>: OTPVerificationType{
        return nil
     }
     
-    func getError() -> (any Error)? {
+    public func getError() -> (any Error)? {
         error
     }
     
-    func geOtp() -> String {
+    public func geOtp() -> String {
         otp
     }
     

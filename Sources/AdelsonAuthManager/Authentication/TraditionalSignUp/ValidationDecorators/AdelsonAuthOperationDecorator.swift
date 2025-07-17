@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AdelsonAuthOperationDecorator<T>: AdelsonAuthOperation{
+public protocol AdelsonAuthOperationDecorator<T>: AdelsonAuthOperation{
     var operation: any AdelsonAuthOperation<T> { get set }
     var error: Error? { get }
     func _execute() async -> Bool
@@ -16,7 +16,7 @@ protocol AdelsonAuthOperationDecorator<T>: AdelsonAuthOperation{
 
 extension AdelsonAuthOperationDecorator{
     // I execute myself as validator first then i go deepr in the chain to call subsequent validators
-    mutating func execute() async -> Bool {
+    public mutating func execute() async -> Bool {
         if await _execute(){
             return await operation.execute()
         } else{
@@ -25,7 +25,7 @@ extension AdelsonAuthOperationDecorator{
         
     }
     
-    func getError() -> (any Error)? {
+    public func getError() -> (any Error)? {
         if let unwrappedError = error{
             return unwrappedError
         } else{
@@ -33,15 +33,15 @@ extension AdelsonAuthOperationDecorator{
         }
     }
 
-    func getUserName() -> String {
+    public func getUserName() -> String {
         operation.getUserName()
     }
     
-    func getPassword() -> String {
+    public func getPassword() -> String {
         operation.getPassword()
     }
     
-    func getExtraUserInfo(key: String) -> String {
+    public func getExtraUserInfo(key: String) -> String {
         operation.getExtraUserInfo(key: key)
     }
 }

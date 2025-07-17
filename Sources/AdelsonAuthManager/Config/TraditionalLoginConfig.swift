@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct TraditionalLoginConfig{
+public struct TraditionalLoginConfig: Sendable{
     let logInEndpoint: String
     let baseUrl: String
 

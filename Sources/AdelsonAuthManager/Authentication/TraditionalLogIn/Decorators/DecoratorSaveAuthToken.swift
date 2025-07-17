@@ -7,19 +7,19 @@
 
 import Foundation
 
-class DecoratorSaveAuthToken: AdelsonAuthOperationDecorator{
-    var operation: any AdelsonAuthOperation<ResponseBodyModel>
-    private(set) var error: (any Error)?
-    private(set) var extraUserInfo: [String : String] = [:]
+public class DecoratorSaveAuthToken: AdelsonAuthOperationDecorator{
+    public var operation: any AdelsonAuthOperation<ResponseBodyModel>
+    public var error: (any Error)?
+    public var extraUserInfo: [String : String] = [:]
     private let keychainManager = KeychainManager.shared
     private let config: AdelsonAuthConfig
     
-    init(operation: any AdelsonAuthOperation<ResponseBodyModel>, config: AdelsonAuthConfig) {
+    public init(operation: any AdelsonAuthOperation<ResponseBodyModel>, config: AdelsonAuthConfig) {
         self.operation = operation
         self.config = config
     }
     
-    func _execute() async -> Bool {
+    public func _execute() async -> Bool {
         if await operation.execute(){
             let accessToken: String = operation.getResult()!.access_token
             let refreshToken: String = operation.getResult()!.refresh_token
@@ -32,7 +32,7 @@ class DecoratorSaveAuthToken: AdelsonAuthOperationDecorator{
         
     }
         
-    func getResult() -> ResponseBodyModel? {
+    public func getResult() -> ResponseBodyModel? {
         operation.getResult()
     }
     

@@ -9,9 +9,9 @@ import Foundation
 import Alamofire
 
 @available(macOS 10.15, *)
-final class AlamoFireNetworkService: AdelsonNetworkService{
+public final class AlamoFireNetworkService: AdelsonNetworkService{
     
-    func request<T: Decodable & Sendable, P: Encodable & Sendable>(
+    public func request<T: Decodable & Sendable, P: Encodable & Sendable>(
             url: String,
             method: Alamofire.HTTPMethod,
             parameters: P,

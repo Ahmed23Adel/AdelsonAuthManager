@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-enum OTPError: Error {
+public enum OTPError: Error {
     case networkError(AFError, statusCode: Int?)
     case invalidURL
     case noResponse

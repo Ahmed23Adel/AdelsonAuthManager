@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RefreshTokenConfig{
+public struct RefreshTokenConfig: Sendable{
     let baseUrl: String
     let refreshTokenEndPoint: String
 
