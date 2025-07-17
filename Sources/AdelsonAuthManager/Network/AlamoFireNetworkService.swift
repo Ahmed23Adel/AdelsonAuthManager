@@ -25,11 +25,15 @@ final class AlamoFireNetworkService: AdelsonNetworkService{
                     parameters: parameters,
                     encoder: JSONParameterEncoder.default
                 )
+                .validate(statusCode: 200..<300)
                 .responseDecodable(of: T.self) { response in
+                    print("g1")
                     switch response.result {
                     case .success(let value):
+                        print("g2", url, parameters,value)
                         continuation.resume(returning: value)
                     case .failure(let error):
+                        print("g3", error)
                         if let statusCode = response.response?.statusCode {
                             print("❌ Error:", error.localizedDescription, "Status:", statusCode)
                             continuation.resume(throwing: SignUpError.networkError(error, statusCode: statusCode))

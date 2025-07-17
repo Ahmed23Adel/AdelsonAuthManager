@@ -10,14 +10,14 @@ import Foundation
 protocol AdelsonAuthOperationDecorator: AdelsonAuthOperation{
     var operation: AdelsonAuthOperation { get set }
     var error: Error? { get }
-    func _execute() -> Bool
+    func _execute() async -> Bool
     
 }
 
 extension AdelsonAuthOperationDecorator{
-    
+    // I execute myself as validator first then i go deepr in the chain to call subsequent validators
     mutating func execute() async -> Bool {
-        if _execute(){
+        if await _execute(){
             return await operation.execute()
         } else{
             return false
@@ -33,4 +33,15 @@ extension AdelsonAuthOperationDecorator{
         }
     }
 
+    func getUserName() -> String {
+        operation.getUserName()
+    }
+    
+    func getPassword() -> String {
+        operation.getPassword()
+    }
+    
+    func getExtraUserInfo(key: String) -> String {
+        operation.getExtraUserInfo(key: key)
+    }
 }

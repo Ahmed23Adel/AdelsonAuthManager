@@ -10,10 +10,10 @@ import AdelsonValidator
 
 @available(macOS 13.0.0, *)
 class DecoratorPassword: AdelsonAuthOperationDecorator{
-    
     var operation: any AdelsonAuthOperation
     var passwordPolicy: any SingleInputPolicyType<String>
     var error: (any Error)?
+    var extraUserInfo: [String : String] = [:]
     
     required init(_ operation: any AdelsonAuthOperation, passwordPolicy: any SingleInputPolicyType<String>) {
         self.operation = operation
@@ -30,13 +30,5 @@ class DecoratorPassword: AdelsonAuthOperationDecorator{
         }
     }
     
-    func getUserName() -> String {
-        operation.getUserName()
-    }
-    
-    func getPassword() -> String {
-        operation.getPassword()
-    }
-    
-    
+   
 }

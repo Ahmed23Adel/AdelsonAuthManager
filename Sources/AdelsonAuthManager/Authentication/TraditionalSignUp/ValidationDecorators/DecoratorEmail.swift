@@ -10,7 +10,7 @@ import AdelsonValidator
 
 
 class DecoratorEmail: AdelsonAuthOperationDecorator{
-    
+    var extraUserInfo: [String : String] = [:]
     var operation: any AdelsonAuthOperation
     private(set) var error: (any Error)?
     
@@ -30,14 +30,5 @@ class DecoratorEmail: AdelsonAuthOperationDecorator{
         
     }
         
-    func getUserName() -> String {
-        operation.getUserName()
-    }
-    
-    func getPassword() -> String {
-        operation.getPassword()
-    }
-    
-    
     
 }

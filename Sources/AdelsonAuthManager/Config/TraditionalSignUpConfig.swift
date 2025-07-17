@@ -16,7 +16,7 @@ struct TraditionalSignUpConfig{
         self.signUpEndpoint = signUpEndpoint
         
     }
-    var signUpUrl: String {
+    var url: String {
         baseUrl + signUpEndpoint
     }
 }

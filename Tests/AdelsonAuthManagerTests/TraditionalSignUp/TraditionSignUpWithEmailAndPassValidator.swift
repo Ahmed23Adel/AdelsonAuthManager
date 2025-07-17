@@ -18,7 +18,7 @@ class TraditionSignUpWithEmailAndPassValidatorTests: XCTestCase {
         config = AdelsonAuthConfig(
             appName: "TestApp",
             baseUrl: "http://localhost:8000/",
-            signUpEndpoint: "signup"
+            signUpEndpoint: "signup", otpEndpoint: "otp", loginEndpoint: "login"
         )
         networkService = AlamoFireNetworkService()
     }

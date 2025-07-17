@@ -2,17 +2,13 @@
 //  File.swift
 //  AdelsonAuthManager
 //
-//  Created by ahmed on 09/07/2025.
+//  Created by ahmed on 17/07/2025.
 //
 
 import Foundation
-import Alamofire
-import AdelsonValidator
-
-
 
 @available(macOS 10.15, *)
-class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
+class TraditionalLogIn<T: Codable & Sendable>: AdelsonAuthOperation{
     var error: (any Error)?
     private let config: AdelsonAuthConfig
     private let username: String
@@ -36,7 +32,7 @@ class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
             username: username,
             password: password,
             config: config,
-            url: config.traditionalSignUpConfig.url)
+            url: config.traditionalLoginConfig.url)
         
     }
         
