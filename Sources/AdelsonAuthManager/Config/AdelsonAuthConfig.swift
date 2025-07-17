@@ -14,12 +14,15 @@ final class AdelsonAuthConfig: Sendable{
     let keychainConfig: KeychainConfig
     let otpConfig: OTPConfig
     let traditionalLoginConfig: TraditionalLoginConfig
+    let mainAuthConfig: MainAuthConfig = MainAuthConfig()
+    let refreshTokenConfig: RefreshTokenConfig
     
     init(appName: String,
          baseUrl: String,
          signUpEndpoint: String,
          otpEndpoint: String,
-         loginEndpoint: String
+         loginEndpoint: String,
+         refreshTokenEndPoint: String
     ){
         self.appName = appName
         self.baseUrl = baseUrl
@@ -27,6 +30,7 @@ final class AdelsonAuthConfig: Sendable{
         self.keychainConfig = KeychainConfig()
         self.otpConfig = OTPConfig(baseURL: baseUrl, endpoint: otpEndpoint)
         self.traditionalLoginConfig = TraditionalLoginConfig(baseUrl: baseUrl, logInEndpoint: loginEndpoint)
+        self.refreshTokenConfig = RefreshTokenConfig(baseUrl: baseUrl, refreshTokenEndPoint: refreshTokenEndPoint)
     }
        
 }

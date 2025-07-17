@@ -22,11 +22,7 @@ class TraditionSignUpExtraFieldTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        config = AdelsonAuthConfig(
-            appName: "TestApp",
-            baseUrl: "http://localhost:8000/",
-            signUpEndpoint: "signup", otpEndpoint: "verify-otp", loginEndpoint: "login",
-        )
+        config = AdelsonAuthConfig.createTestConfig()
         networkService = AlamoFireNetworkService()
     }
     

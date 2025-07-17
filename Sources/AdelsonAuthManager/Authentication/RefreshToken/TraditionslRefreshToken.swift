@@ -9,38 +9,32 @@ import Foundation
 
 
 @available(macOS 10.15, *)
-class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
+class TraditionslRefreshToken: AdelsonAuthOperation{
     var error: (any Error)?
-    private let username: String
-    private let password: String
     private let networkService: AdelsonNetworkService
     private(set) var extraUserInfo: [String : String] = [:]
-    private let url: String
-    private(set) var result: T?
+    private(set) var result: ResponseBodyModel?
+    private var config: AdelsonAuthConfig
     
     
     init(username: String, password: String,
          config: AdelsonAuthConfig,
          extraUserInfo: [String : String] = [:],
          networkService: AdelsonNetworkService = AlamoFireNetworkService(),
-         url: String
     ){
-        self.username = username
-        self.password = password
         self.networkService = networkService
-        self.extraUserInfo = extraUserInfo
-        self.url = url
+        self.config = config
         
     }
         
     func execute() async -> Bool {
         do {
-            let requesResult = try await networkService.request(
-                url: self.url,
+            let requestResult = try await networkService.request(
+                url: self.config.refreshTokenConfig.url,
                 method: .post,
                 parameters: getUserCodableObject(),
-                responseType: T.self)
-            result = requesResult
+                responseType: ResponseBodyModel.self)
+            result = requestResult
             return true
         } catch {
             self.error = handleNetworkError(error as! SignUpError)
@@ -48,12 +42,8 @@ class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
         }
     }
     
-    private func getUserCodableObject() -> [String: String]{
-        var body = ["username": username,
-                "password": password]
-        for (key, value) in extraUserInfo {
-            body[key] = value
-        }
+    private func getUserCodableObject() async -> [String: String]{
+        let body = ["refresh_token": await AuthTokenStore.shared.getRefreshToken()!]
         return body
     }
         
@@ -72,18 +62,18 @@ class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
        return nil
     }
     func getUserName() -> String {
-        username
+        ""
     }
     
     func getPassword() -> String {
-        password
+        ""
     }
     
     func getExtraUserInfo(key: String) -> String {
         extraUserInfo[key, default: ""]
     }
     
-    func getResult() -> T? {
+    func getResult() -> ResponseBodyModel? {
          result
     }
 }

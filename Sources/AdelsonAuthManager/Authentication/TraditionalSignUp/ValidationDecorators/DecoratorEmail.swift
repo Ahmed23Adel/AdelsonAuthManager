@@ -9,12 +9,12 @@ import Foundation
 import AdelsonValidator
 
 
-class DecoratorEmail: AdelsonAuthOperationDecorator{
+class DecoratorEmail<T: Codable & Sendable>: AdelsonAuthOperationDecorator{
     var extraUserInfo: [String : String] = [:]
-    var operation: any AdelsonAuthOperation
+    var operation: any AdelsonAuthOperation<T>
     private(set) var error: (any Error)?
     
-    required init(_ operation: any AdelsonAuthOperation) {
+    required init(_ operation: any AdelsonAuthOperation<T>) {
         self.operation = operation
     }
     // why can't i make _exec private?
@@ -29,6 +29,9 @@ class DecoratorEmail: AdelsonAuthOperationDecorator{
         }
         
     }
-        
+       
+    func getResult() -> T? {
+        operation.getResult()
+    }
     
 }

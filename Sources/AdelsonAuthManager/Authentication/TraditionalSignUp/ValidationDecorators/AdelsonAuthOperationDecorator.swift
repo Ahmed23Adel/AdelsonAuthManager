@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol AdelsonAuthOperationDecorator: AdelsonAuthOperation{
-    var operation: AdelsonAuthOperation { get set }
+protocol AdelsonAuthOperationDecorator<T>: AdelsonAuthOperation{
+    var operation: any AdelsonAuthOperation<T> { get set }
     var error: Error? { get }
     func _execute() async -> Bool
     

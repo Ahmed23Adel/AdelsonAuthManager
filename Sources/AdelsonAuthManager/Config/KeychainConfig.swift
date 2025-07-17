@@ -10,4 +10,6 @@ import Foundation
 struct KeychainConfig{
     let usernameAccount = "AdelsonAccountUsername"
     let passwordAccount = "AdelsonAccountPassword"
+    let accessTokenAccount = "AdlesonAccountAccessToken"
+    let refreshTokenAccount = "AdlesonAccountRefreshToken"
 }

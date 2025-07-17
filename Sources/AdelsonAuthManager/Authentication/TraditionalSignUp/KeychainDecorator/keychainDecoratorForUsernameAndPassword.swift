@@ -7,14 +7,14 @@
 
 import Foundation
 
-class KeychainDecorator: AdelsonAuthOperationDecorator{
-    var operation: any AdelsonAuthOperation
+class keychainDecoratorForUsernameAndPassword<T: Codable & Sendable>: AdelsonAuthOperationDecorator{
+    var operation: any AdelsonAuthOperation<T>
     var error: (any Error)?
     var keychainManager: KeychainManager
-    var config: KeychainConfig
+    var config: AdelsonAuthConfig
     var extraUserInfo: [String : String] = [:]
     
-    init(operation: any AdelsonAuthOperation, keychainManager: KeychainManager, config: KeychainConfig) {
+    init(operation: any AdelsonAuthOperation<T>, keychainManager: KeychainManager, config: AdelsonAuthConfig) {
         self.operation = operation
         self.keychainManager = keychainManager
         self.config = config
@@ -29,8 +29,8 @@ class KeychainDecorator: AdelsonAuthOperationDecorator{
         }
     }
     func _execute() async -> Bool {
-        let _ = await keychainManager.save(getUserName().data(using: .utf8) ?? Data(), account: config.usernameAccount)
-        let _ = await keychainManager.save(getPassword().data(using: .utf8) ?? Data(), account: config.passwordAccount)
+        let _ = await keychainManager.save(getUserName().data(using: .utf8) ?? Data(), account: config.keychainConfig.usernameAccount)
+        let _ = await keychainManager.save(getPassword().data(using: .utf8) ?? Data(), account: config.keychainConfig.passwordAccount)
         return true
     }
     
@@ -44,5 +44,9 @@ class KeychainDecorator: AdelsonAuthOperationDecorator{
     
     func getExtraUserInfo(key: String) -> String {
         operation.getExtraUserInfo(key: key)
+    }
+    
+    func getResult() -> T? {
+        operation.getResult()
     }
 }

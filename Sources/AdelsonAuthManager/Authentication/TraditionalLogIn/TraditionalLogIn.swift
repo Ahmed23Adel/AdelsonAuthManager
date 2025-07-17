@@ -8,7 +8,7 @@
 import Foundation
 
 @available(macOS 10.15, *)
-class TraditionalLogIn<T: Codable & Sendable>: AdelsonAuthOperation{
+class TraditionalLogIn: AdelsonAuthOperation{
     var error: (any Error)?
     private let config: AdelsonAuthConfig
     private let username: String
@@ -16,7 +16,7 @@ class TraditionalLogIn<T: Codable & Sendable>: AdelsonAuthOperation{
     private let networkService: AdelsonNetworkService
     private(set) var extraUserInfo: [String : String] = [:]
     
-    private(set) var genericAuthRequester: GenericAuthRequester<T>
+    private(set) var genericAuthRequester: GenericAuthRequester<ResponseBodyModel>
     
     
     init(username: String, password: String,
@@ -50,5 +50,9 @@ class TraditionalLogIn<T: Codable & Sendable>: AdelsonAuthOperation{
     
     func getExtraUserInfo(key: String) -> String {
         extraUserInfo[key, default: ""]
+    }
+    
+    func getResult() -> ResponseBodyModel? {
+        genericAuthRequester.getResult()
     }
 }

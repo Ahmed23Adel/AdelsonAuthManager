@@ -6,7 +6,9 @@
 //
 
 import Foundation
-protocol AdelsonAuthOperation{
+protocol AdelsonAuthOperation<T>{
+    associatedtype T = Codable & Sendable
+    
     var error: (any Error)? { get }
     var extraUserInfo: [String : String] { get }
     mutating func execute() async -> Bool
@@ -14,6 +16,7 @@ protocol AdelsonAuthOperation{
     func getPassword()-> String
     func getExtraUserInfo(key: String) -> String
     func getError() -> Error?
+    func getResult() -> T?
 }
 
 extension AdelsonAuthOperation{

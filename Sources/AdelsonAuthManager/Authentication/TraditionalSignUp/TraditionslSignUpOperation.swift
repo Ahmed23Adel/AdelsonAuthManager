@@ -13,6 +13,7 @@ import AdelsonValidator
 
 @available(macOS 10.15, *)
 class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
+        
     var error: (any Error)?
     private let config: AdelsonAuthConfig
     private let username: String
@@ -55,4 +56,9 @@ class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOperation{
     func getExtraUserInfo(key: String) -> String {
         extraUserInfo[key, default: ""]
     }
+    
+    func getResult() -> T? {
+        genericAuthRequester.getResult()
+    }
+
 }

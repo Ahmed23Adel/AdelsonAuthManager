@@ -9,14 +9,15 @@ import Foundation
 import AdelsonValidator
 
 @available(macOS 13.0.0, *)
-class DecoratorExtraField: AdelsonAuthOperationDecorator{
-    var operation: any AdelsonAuthOperation
+class DecoratorExtraField<T: Codable & Sendable>: AdelsonAuthOperationDecorator{
+    
+    var operation: any AdelsonAuthOperation<T>
     var error: (any Error)?
     var extraUserInfo: [String : String] = [:]
     var key: String
     var policy: SingleInputPolicy<String>
     
-    init(operation: any AdelsonAuthOperation, key: String, policy: SingleInputPolicy<String> ) {
+    init(operation: any AdelsonAuthOperation<T>, key: String, policy: SingleInputPolicy<String> ) {
         self.operation = operation
         self.key = key
         self.policy = policy
@@ -32,6 +33,9 @@ class DecoratorExtraField: AdelsonAuthOperationDecorator{
         }
     }
         
+    func getResult() -> T? {
+        operation.getResult()
+    }
     
     
     

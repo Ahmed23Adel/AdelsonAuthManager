@@ -20,12 +20,7 @@ class OTPVerificationTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        config = AdelsonAuthConfig(
-            appName: "TestApp",
-            baseUrl: "http://localhost:8000/",
-            signUpEndpoint: "signup",
-            otpEndpoint: "verify-otp", loginEndpoint: "login"
-        )
+        config = AdelsonAuthConfig.createTestConfig()
         networkService = AlamoFireNetworkService()
         credentials = BasicCredentials(username: "ahmed1", password: "any")
     }
@@ -300,11 +295,7 @@ class OTPVerificationTests: XCTestCase {
     /// Test Case 12: Test URL configuration
     func testURLConfiguration() {
         // Arrange
-        let customConfig = AdelsonAuthConfig(
-            appName: "TestApp",
-            baseUrl: "https://api.example.com/",
-            signUpEndpoint: "custom-signup", otpEndpoint: "verify-otp", loginEndpoint: "login"
-        )
+        let customConfig = AdelsonAuthConfig.createTestConfig()
         
         otpVerification = OTPVerification<MockOTPResponse>(
             otp: "123456",

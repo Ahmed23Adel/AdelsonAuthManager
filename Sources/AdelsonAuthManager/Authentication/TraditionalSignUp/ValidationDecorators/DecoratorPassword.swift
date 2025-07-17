@@ -9,13 +9,13 @@ import Foundation
 import AdelsonValidator
 
 @available(macOS 13.0.0, *)
-class DecoratorPassword: AdelsonAuthOperationDecorator{
-    var operation: any AdelsonAuthOperation
+class DecoratorPassword<T: Codable & Sendable>: AdelsonAuthOperationDecorator{
+    var operation: any AdelsonAuthOperation<T>
     var passwordPolicy: any SingleInputPolicyType<String>
     var error: (any Error)?
     var extraUserInfo: [String : String] = [:]
     
-    required init(_ operation: any AdelsonAuthOperation, passwordPolicy: any SingleInputPolicyType<String>) {
+    required init(_ operation: any AdelsonAuthOperation<T>, passwordPolicy: any SingleInputPolicyType<String>) {
         self.operation = operation
         self.passwordPolicy = passwordPolicy
     }
@@ -30,5 +30,7 @@ class DecoratorPassword: AdelsonAuthOperationDecorator{
         }
     }
     
-   
+    func getResult() -> T? {
+        operation.getResult()
+    }
 }

@@ -15,11 +15,7 @@ class TraditionSignUpWithEmailAndPassValidatorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        config = AdelsonAuthConfig(
-            appName: "TestApp",
-            baseUrl: "http://localhost:8000/",
-            signUpEndpoint: "signup", otpEndpoint: "otp", loginEndpoint: "login"
-        )
+        config = AdelsonAuthConfig.createTestConfig()
         networkService = AlamoFireNetworkService()
     }
     
