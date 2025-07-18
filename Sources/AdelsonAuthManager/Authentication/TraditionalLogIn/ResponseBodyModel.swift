@@ -8,7 +8,7 @@
 import Foundation
 
 public struct ResponseBodyModel: Codable & Sendable{
-    let access_token: String
-    let refresh_token: String
-    let token_type: String
+    public let access_token: String
+    public let refresh_token: String
+    public let token_type: String
 }
