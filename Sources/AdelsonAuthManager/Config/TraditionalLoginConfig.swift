@@ -15,7 +15,7 @@ public struct TraditionalLoginConfig: Sendable{
         self.logInEndpoint = logInEndpoint
         
     }
-    var url: String {
+    public var url: String {
         baseUrl + logInEndpoint
     }
 }
