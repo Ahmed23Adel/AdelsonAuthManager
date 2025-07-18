@@ -11,6 +11,9 @@ import Alamofire
 @available(macOS 10.15, *)
 public final class AlamoFireNetworkService: AdelsonNetworkService{
     
+    public init(){
+        
+    }
     public func request<T: Decodable & Sendable, P: Encodable & Sendable>(
             url: String,
             method: Alamofire.HTTPMethod,
