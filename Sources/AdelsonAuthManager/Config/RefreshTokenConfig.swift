@@ -16,7 +16,7 @@ public struct RefreshTokenConfig: Sendable{
         self.refreshTokenEndPoint = refreshTokenEndPoint
     }
     
-    var url: String {
+    public var url: String {
         "\(baseUrl)\(refreshTokenEndPoint)"
     }
 }
