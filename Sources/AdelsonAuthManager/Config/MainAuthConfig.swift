@@ -10,6 +10,8 @@ import Foundation
 public struct MainAuthConfig: Sendable{
     private(set) var accessToken: String?
     private(set) var refresh_token: String?
+    private(set) var username: String?
+    private(set) var password: String?
     
     init(){
         
@@ -21,6 +23,15 @@ public struct MainAuthConfig: Sendable{
     mutating func setRefreshToken(refreshToken: String){
         self.refresh_token = refreshToken
     }
+    
+    mutating func setUsername(username: String){
+        self.username = username
+    }
+    
+    mutating func setPassword(password: String){
+        self.password = password
+    }
+    
 }
 
 
