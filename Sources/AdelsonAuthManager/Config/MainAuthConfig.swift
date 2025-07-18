@@ -16,19 +16,19 @@ public struct MainAuthConfig: Sendable{
     init(){
         
     }
-    mutating func setAccessToken(accessToken: String){
+    public mutating func setAccessToken(accessToken: String){
         self.accessToken = accessToken
     }
     
-    mutating func setRefreshToken(refreshToken: String){
+    public mutating func setRefreshToken(refreshToken: String){
         self.refresh_token = refreshToken
     }
     
-    mutating func setUsername(username: String){
+    public mutating func setUsername(username: String){
         self.username = username
     }
     
-    mutating func setPassword(password: String){
+    public mutating func setPassword(password: String){
         self.password = password
     }
     
