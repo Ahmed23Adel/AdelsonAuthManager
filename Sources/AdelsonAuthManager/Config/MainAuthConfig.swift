@@ -8,10 +8,10 @@
 import Foundation
 
 public struct MainAuthConfig: Sendable{
-    private(set) var accessToken: String?
-    private(set) var refresh_token: String?
-    private(set) var username: String?
-    private(set) var password: String?
+    public var accessToken: String?
+    public var refresh_token: String?
+    public var username: String?
+    public var password: String?
     
     init(){
         
