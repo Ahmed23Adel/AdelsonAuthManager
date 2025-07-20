@@ -23,12 +23,7 @@ public actor AdelsonAuthPredefinedActions{
                 refreshTokenEndPoint: String
     ) async throws  -> AdelsonAuthConfig{
         // 1- Read the access tokens from keychain and store it in in main configurator
-        let keychainManager = KeychainManager.shared
-        let keychainConfig = KeychainConfig()
-        let accessToken = await keychainManager.read(account: keychainConfig.accessTokenAccount)
-        let refreshToken = await keychainManager.read(account: keychainConfig.refreshTokenAccount)
-        let username = await keychainManager.read(account: keychainConfig.usernameAccount)
-        let password = await keychainManager.read(account: keychainConfig.passwordAccount)
+        
         
         let config = await AdelsonAuthConfig(
             appName: appName,
@@ -38,6 +33,15 @@ public actor AdelsonAuthPredefinedActions{
             loginEndpoint: loginEndpoint,
             refreshTokenEndPoint: refreshTokenEndPoint
         )
+        
+        let keychainManager = KeychainManager.shared
+        KeychainManager.configure(with: config)
+        let keychainConfig = KeychainConfig()
+        let accessToken = await keychainManager.read(account: keychainConfig.accessTokenAccount)
+        let refreshToken = await keychainManager.read(account: keychainConfig.refreshTokenAccount)
+        let username = await keychainManager.read(account: keychainConfig.usernameAccount)
+        let password = await keychainManager.read(account: keychainConfig.passwordAccount)
+        
         guard let unwrappedAccessToken = accessToken else{
             throw AdelsonAuthPredefinedActionsErrors.tokenNotStored
         }
