@@ -33,9 +33,8 @@ public actor AdelsonAuthPredefinedActions{
             loginEndpoint: loginEndpoint,
             refreshTokenEndPoint: refreshTokenEndPoint
         )
-        
-        let keychainManager = KeychainManager.shared
         KeychainManager.configure(with: config)
+        let keychainManager = KeychainManager.shared        
         let keychainConfig = KeychainConfig()
         let accessToken = await keychainManager.read(account: keychainConfig.accessTokenAccount)
         let refreshToken = await keychainManager.read(account: keychainConfig.refreshTokenAccount)

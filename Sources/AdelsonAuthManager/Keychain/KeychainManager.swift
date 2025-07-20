@@ -24,10 +24,12 @@ public actor KeychainManager {
     }
     
     private init(config: sending AdelsonAuthConfig) {
+        print("configure2")
         self.config = config
     }
     
     public static func configure(with config: sending AdelsonAuthConfig) {
+        print("configure1")
         lock.lock()
         defer { lock.unlock() }
         
