@@ -21,7 +21,7 @@ public actor AdelsonAuthPredefinedActions{
                 otpEndpoint: String,
                 loginEndpoint: String,
                 refreshTokenEndPoint: String
-    ) async throws  -> AdelsonAuthConfig{
+    ) async  -> AdelsonAuthConfig{
         // 1- Read the access tokens from keychain and store it in in main configurator
         
         
