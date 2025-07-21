@@ -24,7 +24,7 @@ public class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOpera
     private(set) var genericAuthRequester: GenericAuthRequester<T>
     
     
-    init(username: String, password: String,
+    public init(username: String, password: String,
          config: AdelsonAuthConfig,
          extraUserInfo: [String : String] = [:],
          networkService: AdelsonNetworkService = AlamoFireNetworkService()){
