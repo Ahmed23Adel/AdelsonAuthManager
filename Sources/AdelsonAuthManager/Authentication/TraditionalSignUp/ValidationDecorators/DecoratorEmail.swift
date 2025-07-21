@@ -14,7 +14,7 @@ public class DecoratorEmail<T: Codable & Sendable>: AdelsonAuthOperationDecorato
     public var operation: any AdelsonAuthOperation<T>
     public var error: (any Error)?
     
-    required init(_ operation: any AdelsonAuthOperation<T>) {
+    public required init(_ operation: any AdelsonAuthOperation<T>) {
         self.operation = operation
     }
     // why can't i make _exec private?

@@ -15,7 +15,7 @@ public class DecoratorPassword<T: Codable & Sendable>: AdelsonAuthOperationDecor
     public var error: (any Error)?
     public var extraUserInfo: [String : String] = [:]
     
-    required init(_ operation: any AdelsonAuthOperation<T>, passwordPolicy: any SingleInputPolicyType<String>) {
+    public required init(_ operation: any AdelsonAuthOperation<T>, passwordPolicy: any SingleInputPolicyType<String>) {
         self.operation = operation
         self.passwordPolicy = passwordPolicy
     }
