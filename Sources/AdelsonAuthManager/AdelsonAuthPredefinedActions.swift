@@ -41,18 +41,20 @@ public actor AdelsonAuthPredefinedActions{
         let username = await keychainManager.read(account: keychainConfig.usernameAccount)
         let password = await keychainManager.read(account: keychainConfig.passwordAccount)
         
-        guard let unwrappedAccessToken = accessToken else{
-            throw AdelsonAuthPredefinedActionsErrors.tokenNotStored
-        }
-        guard let unwrappedRefreshToken = refreshToken else{
-            throw AdelsonAuthPredefinedActionsErrors.tokenNotStored
-        }
         guard let unwrappedUsername = username else{
-            throw AdelsonAuthPredefinedActionsErrors.tokenNotStored
+            return config
         }
         guard let unwrappedPassword = password else{
-            throw AdelsonAuthPredefinedActionsErrors.tokenNotStored
+            return config
         }
+        
+        guard let unwrappedAccessToken = accessToken else{
+            return config
+        }
+        guard let unwrappedRefreshToken = refreshToken else{
+            return config
+        }
+        
         await MainActor.run {
             config.mainAuthConfig.setAccessToken(accessToken: String(data: unwrappedAccessToken, encoding: .utf8)!)
             config.mainAuthConfig.setRefreshToken(refreshToken: String(data: unwrappedRefreshToken, encoding: .utf8)!)
