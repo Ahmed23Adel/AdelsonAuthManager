@@ -30,7 +30,7 @@ public final class AlamoFireNetworkService: AdelsonNetworkService{
                 )
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: T.self) { response in
-                    print("g1")
+                    print("g1", parameters)
                     switch response.result {
                     case .success(let value):
                         print("g2", url, parameters,value)

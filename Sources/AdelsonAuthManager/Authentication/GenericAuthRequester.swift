@@ -54,6 +54,7 @@ public class GenericAuthRequester<T: Codable & Sendable>: AdelsonAuthOperation{
         for (key, value) in extraUserInfo {
             body[key] = value
         }
+        print("1Body sent", body)
         return body
     }
         
