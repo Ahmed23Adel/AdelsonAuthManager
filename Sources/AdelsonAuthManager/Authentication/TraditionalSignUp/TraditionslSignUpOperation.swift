@@ -37,8 +37,11 @@ public class TraditionslSignUpOperation<T: Codable & Sendable>: AdelsonAuthOpera
             username: username,
             password: password,
             config: config,
+            extraUserInfo: extraUserInfo,
             networkService: AlamoFireNetworkService(),
-            url: config.traditionalSignUpConfig.url)
+            url: config.traditionalSignUpConfig.url,
+            
+        )
         
     }
         
