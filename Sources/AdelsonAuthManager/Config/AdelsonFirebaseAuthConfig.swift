@@ -22,11 +22,11 @@ import Foundation
 public final class AdelsonFirebaseAuthConfig: Sendable{
     let appName: String
     let baseUrl: String
-    public let fnFirebaseIdToken: () -> String
+    public let fnFirebaseIdToken: @Sendable () async -> String
 
     public init(appName: String,
          baseUrl: String,
-         fnFirebaseIdToken: @escaping () -> String
+         fnFirebaseIdToken: @escaping @Sendable () async -> String 
     ){
         self.appName = appName
         self.baseUrl = baseUrl
