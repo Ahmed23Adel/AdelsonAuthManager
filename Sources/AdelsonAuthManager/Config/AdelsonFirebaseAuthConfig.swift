@@ -19,9 +19,8 @@ import Foundation
 ///    return idToken
 ///}
 @available(macOS 10.15, *)
-@MainActor
 public final class AdelsonFirebaseAuthConfig: ObservableObject, Sendable{
-    public static var shared: AdelsonFirebaseAuthConfig!
+    nonisolated(unsafe) public static var shared: AdelsonFirebaseAuthConfig!
     
     let appName: String
     let baseUrl: String
