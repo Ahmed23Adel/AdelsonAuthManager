@@ -18,15 +18,16 @@ import Foundation
 ///    let idToken = try await user.getIDToken(forcibly: false)
 ///    return idToken
 ///}
+@available(macOS 10.15, *)
 @MainActor
-public final class AdelsonFirebaseAuthConfig: Sendable{
+public final class AdelsonFirebaseAuthConfig: ObservableObject, Sendable{
     let appName: String
     let baseUrl: String
     public let fnFirebaseIdToken: @Sendable () async -> String
 
     public init(appName: String,
          baseUrl: String,
-         fnFirebaseIdToken: @escaping @Sendable () async -> String 
+         fnFirebaseIdToken: @escaping @Sendable () async -> String
     ){
         self.appName = appName
         self.baseUrl = baseUrl
