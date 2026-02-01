@@ -21,6 +21,8 @@ import Foundation
 @available(macOS 10.15, *)
 @MainActor
 public final class AdelsonFirebaseAuthConfig: ObservableObject, Sendable{
+    public static var shared: AdelsonFirebaseAuthConfig!
+    
     let appName: String
     let baseUrl: String
     public let fnFirebaseIdToken: @Sendable () async -> String
