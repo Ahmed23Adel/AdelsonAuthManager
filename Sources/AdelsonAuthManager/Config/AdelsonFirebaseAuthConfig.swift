@@ -22,8 +22,8 @@ import Foundation
 public final class AdelsonFirebaseAuthConfig: Sendable{
     nonisolated(unsafe) public static var shared: AdelsonFirebaseAuthConfig!
     
-    let appName: String
-    let baseUrl: String
+    public let appName: String
+    public let baseUrl: String
     public let fnFirebaseIdToken: @Sendable () async -> String
 
     public init(appName: String,
