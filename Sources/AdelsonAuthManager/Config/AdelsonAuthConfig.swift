@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 public final class AdelsonAuthConfig: Sendable{
     let appName: String
-    let baseUrl: String
+    public let baseUrl: String
     public let traditionalSignUpConfig: TraditionalSignUpConfig
     public let keychainConfig: KeychainConfig
     public let otpConfig: OTPConfig
